@@ -10,17 +10,12 @@ function progress_bar(){
     echo -ne '\n'
 }
 
-#Nos movemos al directorio home del usuario
 cd $HOME
 
-#Preguntar al usuario su nombre
 echo -e "\e[93m¿Cual es su nombre?\e[0m"
-#Obtemos el nombre de la persona
 read nombre
 
-#Preguntar al usuario su apellido
 echo -e "\e[93m¿Cual es su primer apellido?\e[0m"
-#Obtenemos el apellido de la persona
 read apellido
 
 echo -e "\e[104mHola $nombre $apellido\e[0m"
