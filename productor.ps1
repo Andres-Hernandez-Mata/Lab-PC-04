@@ -1,15 +1,15 @@
 ﻿#Autor: Andres Hernandez Mata
 #Fecha: 24/03/2021
-#Version: 1.0
+#Version: 2.0
 
 #Nos movemos al directorio home del usuario
 Set-Location $HOME
 
 #Preguntar al usuario su nombre
-$nombre = Read-Host "¿Cual es su nombre? "
+$nombre = Read-Host "Ingrese su nombre"
 
 #Preguntar al usuario su apellido
-$apellido = Read-Host "¿Cual es su primer apellido? "
+$apellido = Read-Host "Ingrese sus apellidos"
 
 Write-Host "Hola $nombre $apellido" -ForegroundColor Yellow
 
@@ -37,10 +37,15 @@ Write-Host "*** Copiando los tres archivos generados anteriomente ***" -Foregrou
 1..3 | ForEach-Object { Copy-Item -Path $HOME\lab$_.txt -Destination $HOME\$directorio }
 Write-Host "Se copiaron los archivo lab{1..3}.txt en la siguiente ubicacion $HOME\$directorio" -ForegroundColor Green
 
+Write-Host "*** Copiando los archivos ping.txt y size.txt en el nuevo directorio ***" -ForegroundColor Red
+Copy-Item -Path $HOME\ping.txt -Destination $HOME\$directorio
+Copy-Item -Path $HOME\size.txt -Destination $HOME\$directorio
+Write-Host "Se copiaron los archivos ping.txt y size.txt en $HOME\$directorio" -ForegroundColor Green
 
+Write-Host "*** Listando el contenido del nuevo directorio ***" -ForegroundColor Red
+Get-ChildItem $HOME\$directorio
 
+Write-Host "*** Llamando al script consumidor.ps1 y enviando parametros ***" -ForegroundColor Red
 
-
-
-
+D:\Scripts\Lab-PC-04\consumidor.ps1 $nombre $apellido
 
