@@ -52,7 +52,7 @@ mkdir $directorio
 progress_bar
 echo -e "\e[92mSe genero un nuevo directorio en la ubicacion de $HOME/$directorio\e[0m"
 
-echo -e "\e[91m*** Copiando los tres archivos generado anteriomente ***\e[0m"
+echo -e "\e[91m*** Copiando los tres archivos generados anteriomente ***\e[0m"
 cp lab{1..3}.txt $HOME/$directorio
 progress_bar
 echo -e "\e[92mSe copiaron los archivo lab{1..3}.txt en la siguiente ubicacion $HOME/$directorio\e[0m"
