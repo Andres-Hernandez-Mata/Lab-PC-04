@@ -14,7 +14,7 @@ $apellido = Read-Host "Ingrese sus apellidos"
 Write-Host "Hola $nombre $apellido" -ForegroundColor Yellow
 
 Write-Host "*** Directorio actual ***" -ForegroundColor Red
-Get-Location
+Get-Location | Format-Table -AutoSize
 
 Write-Host "*** Probando la conectividad con un ping a la computadora local 127.0.0.1 ***" -ForegroundColor Red
 Test-Connection 127.0.0.1 > ping.txt | Format-Table -AutoSize
