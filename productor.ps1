@@ -1,16 +1,33 @@
 ﻿<#
     Autor: Andres Hernandez Mata
     Fecha: 24/03/2021
-    Version: 2.1
+    Version: 2.2
 #>
+
+Clear
 
 Set-Location $HOME
 
 function Start-Informacion{
-    $nombre = Read-Host "Ingrese su nombre"
-    $apellido = Read-Host "Ingrese sus apellidos"
-    Write-Host "Hola $nombre $apellido" -ForegroundColor Yellow
+    
+    $flag = $true
+
+    do {        
+        
+        $nombre = Read-Host "Ingrese su nombre"
+        $apellido = Read-Host "Ingrese sus apellidos"
+        if( [string]::IsNullOrEmpty($nombre) -or  [string]::IsNullOrEmpty($apellido) ){
+            Clear
+            Write-Host 'Favor de verificar los datos ingresados...' -ForegroundColor Red
+        } else {
+            $flag = $false
+            Write-Host "Hola $nombre $apellido" -ForegroundColor Yellow                  
+        }
+        
+    } while ($flag)   
+                    
 }
+Start-Informacion
 
 function Get-Directorio{
     Write-Host "*** Directorio actual ***" -ForegroundColor Red
