@@ -47,27 +47,27 @@ function Get-Directorio{
     Write-Host "*** Directorio actual ***" -ForegroundColor Red        
     Get-Location | Format-Table -AutoSize
 }
-Get-Directorio
+#Get-Directorio
 
 function Ping-Local{
     try{
 
         Write-Host "*** Probando la conectividad con un ping a la computadora local 127.0.0.1 ***" -ForegroundColor Red
         Test-Connection 127.0.0.1 > ping.txt -ErrorAction Stop | Format-Table -AutoSize | Write-Progress-Bar       
-        Write-Host "Se genero el archivo ping.txt con el resultado" -ForegroundColor Green
+        Write-Host "Se genero un archivo en $HOME\ping.txt con el resultado obtenido" -ForegroundColor Green
 
     } catch {
         $_.Exception.Message
     }
 }
-Ping-Local
+#Ping-Local
 
 function Get-Size{
     Write-Host "*** Consultado el tamaño del directorio home del usuario ***" -ForegroundColor Red
     Get-ChildItem -Path $HOME -File -Recurse | Measure-Object -Property Length -Sum > size.txt
-    Write-Host "Se genero el archivo size.txt con el resultado esperado" -ForegroundColor Green    
+    Write-Host "Se genero un archivo en $HOME\size.txt con el resultado obtenido" -ForegroundColor Green    
 }
-
+#Get-Size
 
 function New-File{    
     Write-Host "*** Creando 3 archivos .txt ***" -ForegroundColor Red
