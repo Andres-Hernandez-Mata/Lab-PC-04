@@ -50,10 +50,17 @@ function Get-Directorio{
 Get-Directorio
 
 function Ping-Local{
-    Write-Host "*** Probando la conectividad con un ping a la computadora local 127.0.0.1 ***" -ForegroundColor Red
-    Test-Connection 127.0.0.1 > ping.txt | Format-Table -AutoSize
-    Write-Host "Se genero el archivo ping.txt con el resultado" -ForegroundColor Green
+    try{
+
+        Write-Host "*** Probando la conectividad con un ping a la computadora local 127.0.0.1 ***" -ForegroundColor Red
+        Test-Connection 127.0.0.1 > ping.txt -ErrorAction Stop | Format-Table -AutoSize | Write-Progress-Bar       
+        Write-Host "Se genero el archivo ping.txt con el resultado" -ForegroundColor Green
+
+    } catch {
+        $_.Exception.Message
+    }
 }
+Ping-Local
 
 function Get-Size{
     Write-Host "*** Consultado el tamaño del directorio home del usuario ***" -ForegroundColor Red
