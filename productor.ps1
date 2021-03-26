@@ -8,6 +8,20 @@ Clear
 
 Set-Location $HOME
 
+function Write-Progress-Bar{
+    
+    $total = 5
+    $i = 0
+
+    for ($i=0; $i -lt $total; $i++) {
+
+        $porcentaje = ($i / $total) * 100
+        Write-Progress -Activity 'Espere un momento' -Status "$i %" -PercentComplete $porcentaje
+        Sleep 1
+
+    }
+}
+
 function Start-Informacion{
     
     $flag = $true
@@ -27,12 +41,13 @@ function Start-Informacion{
     } while ($flag)   
                     
 }
-Start-Informacion
+#Start-Informacion
 
 function Get-Directorio{
-    Write-Host "*** Directorio actual ***" -ForegroundColor Red
+    Write-Host "*** Directorio actual ***" -ForegroundColor Red        
     Get-Location | Format-Table -AutoSize
 }
+Get-Directorio
 
 function Ping-Local{
     Write-Host "*** Probando la conectividad con un ping a la computadora local 127.0.0.1 ***" -ForegroundColor Red
