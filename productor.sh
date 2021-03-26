@@ -27,12 +27,12 @@ pwd
 echo -e "\e[91m*** Probando la conectividad con un ping a la computadora local 127.0.0.1 ***\e[0m"
 ping -c 4 127.0.0.1 > ping.txt
 progress_bar
-echo -e "\e[92mSe genero el archivo ping.txt con el resultado\e[0m"
+echo -e "\e[92mSe genero un archivo en $HOME/ping.txt con el resultado obtenido\e[0m"
 
 echo -e "\e[91m*** Consultado el tamaño del directorio home del usuario ***\e[0m"
 du -sh $HOME > size.txt
 progress_bar
-echo -e "\e[92mSe genero el archivo size.txt con el resultado esperado\e[0m"
+echo -e "\e[92mSe genero un archivo en $HOME/size.txt con el resultado obtenido\e[0m"
 
 echo -e "\e[91m*** Creando 3 archivos .txt ***\e[0m"
 touch lab{1..3}.txt
