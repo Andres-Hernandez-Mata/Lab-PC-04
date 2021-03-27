@@ -72,16 +72,23 @@ function Get-Size{
 function New-File{    
     try {
 
-        Write-Host "*** Creando 3 archivos .txt ***" -ForegroundColor Red    
-        1..3 | ForEach-Object { Remove-Item lab$_.txt -ErrorAction Stop }        
-        1..3 | ForEach-Object { New-Item -ItemType File -Name lab$_.txt -ErrorAction Stop }                 
-        Write-Host "Se generaron lab{1..3}.txt en el directorio actual $HOME" -ForegroundColor Green
+        Write-Host "*** Creando 3 archivos .txt ***" -ForegroundColor Red                        
+        
+        1..3 | ForEach-Object { 
+            if(Test-Path lab$_.txt){
+               Write-Host "Archivo lab$_.txt ya existe en $HOME\lab$_.txt" 
+            } else {
+                New-Item -ItemType File -Name lab$_.txt
+            }
+        }
+                                           
+        Write-Host "Los archivos lab{1..3}.txt estan en el directorio actual $HOME" -ForegroundColor Green
 
     } catch {
         $_.Exception.Message
     }
 }
-#New-File
+New-File
 
 function New-Directorio{
     
@@ -114,7 +121,7 @@ function New-Directorio{
     }
     
 }
-New-Directorio
+#New-Directorio
 
 function Copy-New-File{
     Write-Host "*** Copiando los tres archivos generados anteriomente ***" -ForegroundColor Red
