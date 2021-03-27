@@ -1,7 +1,7 @@
 ﻿<#
     Autor: Andres Hernandez Mata
     Fecha: 24/03/2021
-    Version: 2.2
+    Version: 2.5
 #>
 
 Clear
@@ -71,22 +71,50 @@ function Get-Size{
 
 function New-File{    
     try {
+
         Write-Host "*** Creando 3 archivos .txt ***" -ForegroundColor Red    
         1..3 | ForEach-Object { Remove-Item lab$_.txt -ErrorAction Stop }        
         1..3 | ForEach-Object { New-Item -ItemType File -Name lab$_.txt -ErrorAction Stop }                 
         Write-Host "Se generaron lab{1..3}.txt en el directorio actual $HOME" -ForegroundColor Green
+
     } catch {
         $_.Exception.Message
     }
 }
-New-File
+#New-File
 
 function New-Directorio{
-    Write-Host "*** Nuevo directorio ***" -ForegroundColor Red
-    $directorio = Read-Host "Ingresar el nombre del directorio"
-    New-Item -ItemType Directory -Name $directorio
-    Write-Host "Se genero un nuevo directorio en la ubicacion de $HOME\$directorio" -ForegroundColor Green
+    
+    $flag = $true
+
+    try {
+
+        do {
+
+            Write-Host "*** Nuevo directorio ***" -ForegroundColor Red
+            $directorio = Read-Host "Ingresar el nombre del directorio"
+            if( [string]::IsNullOrEmpty($directorio) ){
+                Clear
+                Write-Host 'Favor de verificar los datos ingresados...' -ForegroundColor Red
+            } else {
+                if(Test-Path $HOME\$directorio){
+                    Clear
+                    Write-Host "Ya existe un elemento con el nombre especificado: $HOME\$directorio" -ForegroundColor Red                  
+                } else {
+                    New-Item -ItemType Directory -Name $directorio           
+                    Write-Host "Se genero un nuevo directorio en la ubicacion de $HOME\$directorio" -ForegroundColor Green
+                    $flag = $false
+                }                             
+            }                       
+
+        } while($flag)
+
+    } catch {
+        $_.Exception.Message        
+    }
+    
 }
+New-Directorio
 
 function Copy-New-File{
     Write-Host "*** Copiando los tres archivos generados anteriomente ***" -ForegroundColor Red
