@@ -87,7 +87,7 @@ function Get-Size{
 <#
     Funcion para crear algunos archivos .txt
 #>
-function New-File{    
+function New-Files{    
     
     try {
 
@@ -140,7 +140,7 @@ function New-Directorio{
 
         } while($flag)
 
-        Copy-New-File($directorio)
+        Copy-New-Files($directorio)
 
     } catch {
         $_.Exception.Message        
@@ -151,14 +151,14 @@ function New-Directorio{
 <#
     Funcion para copiar los archivos .txt en el nuevo directorio
 #>
-function Copy-New-File($directorio){
+function Copy-New-Files($directorio){
     
     try {
 
         Write-Host "*** Copiando los tres archivos generados anteriomente ***" -ForegroundColor Red
         1..3 | ForEach-Object { Copy-Item -Path $HOME\lab$_.txt -Destination $HOME\$directorio -ErrorAction SilentlyContinue }
         Write-Host "Se copiaron los archivo lab{1..3}.txt en la siguiente ubicacion $HOME\$directorio" -ForegroundColor Green
-        Copy-File($directorio)
+        Copy-Files($directorio)
 
     } catch {
         $_.Exception.Message
@@ -169,7 +169,7 @@ function Copy-New-File($directorio){
 <#
     Funcion para copiar los archivos generado en el nuevo directorio creado
 #>
-function Copy-File($directorio){
+function Copy-Files($directorio){
     
     try {
 
