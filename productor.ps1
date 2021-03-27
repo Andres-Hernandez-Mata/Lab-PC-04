@@ -70,10 +70,16 @@ function Get-Size{
 #Get-Size
 
 function New-File{    
-    Write-Host "*** Creando 3 archivos .txt ***" -ForegroundColor Red
-    1..3 | ForEach-Object { New-Item -ItemType File -Name lab$_.txt }
-    Write-Host "Se generaron lab{1..3}.txt en el directorio actual $HOME" -ForegroundColor Green
+    try {
+        Write-Host "*** Creando 3 archivos .txt ***" -ForegroundColor Red    
+        1..3 | ForEach-Object { Remove-Item lab$_.txt -ErrorAction Stop }        
+        1..3 | ForEach-Object { New-Item -ItemType File -Name lab$_.txt -ErrorAction Stop }                 
+        Write-Host "Se generaron lab{1..3}.txt en el directorio actual $HOME" -ForegroundColor Green
+    } catch {
+        $_.Exception.Message
+    }
 }
+New-File
 
 function New-Directorio{
     Write-Host "*** Nuevo directorio ***" -ForegroundColor Red
