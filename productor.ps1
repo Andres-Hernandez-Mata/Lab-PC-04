@@ -40,12 +40,15 @@ do {
 } while ($flag)
 
 function Get-Directorio{
+    
     Write-Host "*** Directorio actual ***" -ForegroundColor Red        
     Get-Location | Format-Table -AutoSize
     Ping-Local
+
 }
 
 function Ping-Local{
+    
     try{
 
         Write-Host "*** Probando la conectividad con un ping a la computadora local 127.0.0.1 ***" -ForegroundColor Red
@@ -56,17 +59,20 @@ function Ping-Local{
     } catch {
         $_.Exception.Message
     }
+
 }
 
 function Get-Size{
+    
     Write-Host "*** Consultado el tamaño del directorio home del usuario ***" -ForegroundColor Red
     Get-ChildItem -Path $HOME -File -Recurse | Measure-Object -Property Length -Sum > size.txt
     Write-Host "Se genero un archivo en $HOME\size.txt con el resultado obtenido" -ForegroundColor Green    
     New-File
+
 }
 
-
 function New-File{    
+    
     try {
 
         Write-Host "*** Creando 3 archivos .txt ***" -ForegroundColor Red                        
@@ -85,6 +91,7 @@ function New-File{
     } catch {
         $_.Exception.Message
     }
+
 }
 
 function New-Directorio{
@@ -121,6 +128,7 @@ function New-Directorio{
 }
 
 function Copy-New-File($directorio){
+    
     try {
 
         Write-Host "*** Copiando los tres archivos generados anteriomente ***" -ForegroundColor Red
@@ -131,9 +139,11 @@ function Copy-New-File($directorio){
     } catch {
         $_.Exception.Message
     }
+
 }
 
 function Copy-File($directorio){
+    
     try {
 
         Write-Host "*** Copiando los archivos ping.txt y size.txt en el nuevo directorio ***" -ForegroundColor Red
@@ -145,9 +155,11 @@ function Copy-File($directorio){
     } catch {
         $_.Exception.Message
     }
+
 }
 
 function Read-Directorio($directorio){
+    
     try {
 
         Write-Host "*** Listando el contenido del nuevo directorio ***" -ForegroundColor Red
@@ -156,13 +168,15 @@ function Read-Directorio($directorio){
     } catch {
         $_.Exception.Message
     }
+
 }
 
-
 try {
-    Write-Host "*** Llamando al script consumidor.ps1 y enviando parametros ***" -ForegroundColor Red
-    $consumidor = "D:\Scripts\Lab-PC-04\consumidor.ps1 $nombre $apellido"
+
+    Write-Host "*** Llamando al script consumidor.ps1 y enviando parametros ***" -ForegroundColor Red    
+    $consumidor = ".\consumidor.ps1 '$nombre' '$apellido'"
     Invoke-Expression $consumidor
+
 } catch {
     $_.Exception.Message
 }
