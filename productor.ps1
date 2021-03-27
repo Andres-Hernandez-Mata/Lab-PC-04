@@ -203,7 +203,7 @@ function Read-Directorio($directorio){
 
 
 <#
-    Llamar al script consumidor.sh y enviar parametros
+    Llamar al script consumidor.ps1 y enviar parametros
 #>
 try {
 
