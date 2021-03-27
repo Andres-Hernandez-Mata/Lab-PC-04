@@ -73,7 +73,7 @@ function new_files(){
     progress_bar
     echo -e "\e[92mLos archivos lab{1..3}.txt estan en el directorio actual $HOME\e[0m"
 }
-new_file
+new_files
 
 #Funcion para crear un nuevo directorio solicitando primero el nombre y 
 #verificar que no exista ya en el directorio home
