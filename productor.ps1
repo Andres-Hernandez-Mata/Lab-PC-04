@@ -1,13 +1,16 @@
 ﻿<#
     Autor: Andres Hernandez Mata
     Fecha: 24/03/2021
-    Version: 3.0
+    Version: 3.1
 #>
 
 Clear
 
 Set-Location $HOME
 
+<#
+    Funcion para crear una barrar de proceso
+#>
 function Write-Progress-Bar{
     
     $total = 5
@@ -39,6 +42,10 @@ do {
         
 } while ($flag)
 
+
+<#
+    Funcion para obtener el directorio actual donde estamos ubicados
+#>
 function Get-Directorio{
     
     Write-Host "*** Directorio actual ***" -ForegroundColor Red        
@@ -47,6 +54,9 @@ function Get-Directorio{
 
 }
 
+<#
+    Funcion para probar la conectividad a la computadora local 127.0.0.1 
+#>
 function Ping-Local{
     
     try{
@@ -62,6 +72,9 @@ function Ping-Local{
 
 }
 
+<#
+    Funcion para obtener el tamaño del directorio solicitado
+#>
 function Get-Size{
     
     Write-Host "*** Consultado el tamaño del directorio home del usuario ***" -ForegroundColor Red
@@ -71,6 +84,9 @@ function Get-Size{
 
 }
 
+<#
+    Funcion para crear algunos archivos .txt
+#>
 function New-File{    
     
     try {
@@ -94,6 +110,10 @@ function New-File{
 
 }
 
+<#
+    Funcion para crear un nuevo directorio solicitando primero el nombre y 
+    verificar que no exista ya en el directorio home
+#>
 function New-Directorio{
     
     $flag = $true
@@ -127,6 +147,9 @@ function New-Directorio{
     
 }
 
+<#
+    Funcion para copiar los archivos .txt en el nuevo directorio
+#>
 function Copy-New-File($directorio){
     
     try {
@@ -142,6 +165,9 @@ function Copy-New-File($directorio){
 
 }
 
+<#
+    Funcion para copiar los archivos generado en el nuevo directorio creado
+#>
 function Copy-File($directorio){
     
     try {
@@ -158,6 +184,9 @@ function Copy-File($directorio){
 
 }
 
+<#
+    Funcion para obtener el contenido del nuevo directorio
+#>
 function Read-Directorio($directorio){
     
     try {
@@ -171,6 +200,10 @@ function Read-Directorio($directorio){
 
 }
 
+
+<#
+    Llamar al script consumidor.sh y enviar parametros
+#>
 try {
 
     Write-Host "*** Llamando al script consumidor.ps1 y enviando parametros ***" -ForegroundColor Red    
