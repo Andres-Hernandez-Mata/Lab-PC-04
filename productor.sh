@@ -24,9 +24,9 @@ flag=true
 
 while $flag
 do
-    echo -e "\e[92m¿Cual es su nombre?\e[0m"
+    echo -e "\e[92mIngrese su nombre\e[0m"
     read nombre
-    echo -e "\e[92m¿Cual es su primer apellido?\e[0m"
+    echo -e "\e[92mIngrese sus apellidos\e[0m"
     read apellido
     
     if [[ -z "$nombre" || -z "$apellido" ]];
@@ -135,6 +135,6 @@ read_directorio
 #Llamar al script consumidor.sh y enviar parametros
 echo -e "\e[91m*** Llamando al script consumidor.sh y enviando parametros ***\e[0m"
 progress_bar
-sh ./consumidor.sh $nombre $apellido
+sh ./consumidor.sh "$nombre" "$apellido"
 
 exit 0
