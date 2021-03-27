@@ -36,8 +36,7 @@ do {
         Write-Host 'Favor de verificar los datos ingresados...' -ForegroundColor Red
     } else {
         $flag = $false
-        Write-Host "Hola $nombre $apellido" -ForegroundColor Green
-        Get-Directorio
+        Write-Host "Hola $nombre $apellido" -ForegroundColor Green        
      }
         
 } while ($flag)
@@ -53,6 +52,7 @@ function Get-Directorio{
     Ping-Local
 
 }
+Get-Directorio
 
 <#
     Funcion para probar la conectividad a la computadora local 127.0.0.1 
@@ -133,13 +133,14 @@ function New-Directorio{
                     Write-Host "Ya existe un elemento con el nombre especificado: $HOME\$directorio" -ForegroundColor Red                  
                 } else {
                     New-Item -ItemType Directory -Name $directorio -ErrorAction SilentlyContinue         
-                    Write-Host "Se genero un nuevo directorio en la ubicacion de $HOME\$directorio" -ForegroundColor Green
-                    Copy-New-File($directorio)
+                    Write-Host "Se genero un nuevo directorio en la ubicacion de $HOME\$directorio" -ForegroundColor Green                    
                     $flag = $false
                 }                             
             }                       
 
         } while($flag)
+
+        Copy-New-File($directorio)
 
     } catch {
         $_.Exception.Message        
