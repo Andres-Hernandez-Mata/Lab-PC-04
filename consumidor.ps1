@@ -1,6 +1,8 @@
-﻿#Autor: Andres Hernandez Mata
-#Fecha: 24/03/2021
-#Version: 2.0
+﻿<#
+    Autor: Andres Hernandez Mata
+    Fecha: 24/03/2021
+    Version: 2.1
+#>
 
 param(    
     [string]$nombre,
