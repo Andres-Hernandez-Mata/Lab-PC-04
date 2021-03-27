@@ -12,8 +12,6 @@ param(
 $archivo = $false
 $directorio = $false
 
-clear
-
 Write-Host "*** Borrar archivo o directorio ***" -ForegroundColor Red
 $ruta = Read-Host "Ingresar la ruta del directoio o archivo que quiere borrar"
 
@@ -30,11 +28,11 @@ try{
         if(!$file.PSisContainer){
             Write-Host "La ubicacion $ruta indica que es un archivo" -ForegroundColor Green
             $archivo = $true
-            $elemento = 'archivo'
+            $elemento = "archivo"
         } elseif ($file.PSisContainer){
             Write-Host "La ubicacion $ruta indica que es un directorio" -ForegroundColor Green
             $directorio = $true
-            $elemento = 'directorio'
+            $elemento = "directorio"
         }
 
          Write-Host "*** Comprobando si tiene permisos de lectura y/o escritura ***" -ForegroundColor Red
@@ -48,22 +46,25 @@ try{
          
          do {
             
-            $delete = Read-Host "Desea borrar el $elemento ingresado (true/false)"
+            $delete = Read-Host "Desea borrar el $elemento ingresado (si/no)"
             
-            if ($delete -eq "true"){
-                Remove-Item $ruta
+            if ($delete -eq "si"){
+                if( $elemento -eq "directorio"){
+                    Remove-Item -Path $ruta -Recurse
+                } else {
+                    Remove-Item -Path $ruta 
+                }                
                 Write-Host "Se borro correctamente" -ForegroundColor Green
                 $flag = $false
-            } elseif ($delete -eq "false"){                               
+            } elseif ($delete -eq "no"){                               
                 $flag = $false
             } else {
-                Clear
-                $flag = $true
+                Clear                
             }
 
          } while($flag)
          
-         Write-Host "Adios $nombre $apellido"   
+         Write-Host "Adios $nombre $apellido" -ForegroundColor Green  
     
     } else {
         Write-Host "La ruta no exite en $ruta" -ForegroundColor Red
